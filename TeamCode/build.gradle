@@ -7,13 +7,17 @@
 // the build definitions, you can place those customizations in this file, but
 // please think carefully as to whether such customizations are really necessary
 // before doing so.
-
-
 // Custom definitions may go here
-
 // Include common definitions from above.
 apply from: '../build.common.gradle'
-
 android {
     buildToolsVersion '27.0.3'
+}
+dependencies {
+    implementation files('libs/FtcCommon-release-sources.jar')
+    implementation files('libs/Blocks-release-sources.jar')
+    implementation files('libs/Hardware-release-sources.jar')
+    implementation files('libs/Inspection-release-sources.jar')
+    implementation files('libs/RobotCore-release-sources.jar')
+    implementation files('libs/Vuforia.jar')
 }
