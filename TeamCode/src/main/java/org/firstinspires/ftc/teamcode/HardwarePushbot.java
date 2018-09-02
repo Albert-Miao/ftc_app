@@ -56,6 +56,7 @@ public class HardwarePushbot
     /* Public OpMode members. */
     public DcMotor leftDrive  = null;
     public DcMotor rightDrive = null;
+    public DcMotor extraMotor = null;
 
     /* local OpMode members. */
     HardwareMap hwMap           =  null;
@@ -78,14 +79,19 @@ public class HardwarePushbot
         rightDrive = hwMap.get(DcMotor.class, "right_motor");
         rightDrive.setDirection(DcMotor.Direction.REVERSE);
 
+        extraMotor = hwMap.get(DcMotor.class, "extra_motor");
+        extraMotor.setDirection(DcMotor.Direction.FORWARD);
+
         // Set all motors to zero power
         leftDrive.setPower(0);
         rightDrive.setPower(0);
+        extraMotor.setPower(0);
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
         leftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        extraMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
  }
 
