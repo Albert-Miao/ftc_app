@@ -29,11 +29,10 @@
 
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+import android.media.MediaPlayer;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
@@ -82,6 +81,19 @@ public class TankDriveTest extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
+        telemetry.addData("Status", "Bippity Boppity Boo mofos!");
+        telemetry.update();
+
+        int m[] = {R.raw.good_music, R.raw.chunks_would_load_when_i_gave_the_word};
+
+        MediaPlayer mp = MediaPlayer.create(hardwareMap.appContext,
+                m[(int) (Math.random() * m.length)]);
+
+        mp.start();
+
+        telemetry.addData("Status", "Sound played");
+        telemetry.update();
+
         while(opModeIsActive()) {
             double left;
             double right;
@@ -92,21 +104,15 @@ public class TankDriveTest extends LinearOpMode {
             right = (gamepad1.left_stick_y + gamepad1.left_stick_x) - (gamepad1.right_stick_y -
                     gamepad1.right_stick_x);
 
-            if(left > 1) {
-                left = 1;
-            } else if(left < -1) {
-                left = -1;
-            }
-
-            if(right > 1) {
-                right = 1;
-            } else if(right < -1) {
-                right = -1;
-            }
+            left = Math.min(Math.max(left, -1), 1);
+            right = Math.min(Math.max(right, -1), 1);
 
             robot.leftDrive.setPower(left);
             robot.rightDrive.setPower(right);
         }
+
+        mp.stop();
+
 
         telemetry.addData("Path", "Complete");
         telemetry.update();
