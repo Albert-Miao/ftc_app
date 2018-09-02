@@ -84,14 +84,15 @@ public class TankDriveTest extends LinearOpMode {
         telemetry.addData("Status", "Bippity Boppity Boo mofos!");
         telemetry.update();
 
-        int m[] = {R.raw.good_music, R.raw.chunks_would_load_when_i_gave_the_word};
+        int m[] = {R.raw.good_music, R.raw.chunks_would_load_when_i_gave_the_word, R.raw.gaygay,
+                R.raw.fireflie, R.raw.goody, R.raw.feelings};
 
         MediaPlayer mp = MediaPlayer.create(hardwareMap.appContext,
                 m[(int) (Math.random() * m.length)]);
 
         mp.start();
 
-        telemetry.addData("Status", "Sound played");
+        telemetry.addData("Status", "Rockin\' Out");
         telemetry.update();
 
         while(opModeIsActive()) {
